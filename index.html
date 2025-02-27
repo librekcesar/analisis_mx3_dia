@@ -13,8 +13,11 @@
     <script type="text/javascript" src="count_22_ene.js"></script>
     <script type="text/javascript" src="count_23_ene.js"></script>
     <script type="text/javascript" src="count_24_ene.js"></script>
-    
-
+    <script type="text/javascript" src="20_ene_vol.js"></script>
+    <script type="text/javascript" src="21_ene_vol.js"></script>
+    <script type="text/javascript" src="22_ene_vol.js"></script>
+    <script type="text/javascript" src="23_ene_vol.js"></script>
+    <script type="text/javascript" src="24_ene_vol.js"></script>
 
     <script src="https://cdn.jsdelivr.net/leaflet.choropleth/1.0.0/choropleth.min.js"></script> <!--esta librería permite llamar la clasificación para mostrar la capa-->
 
@@ -52,6 +55,94 @@
         }).addTo(map);
 
         // Capas existentes
+        ///Primera capa de puntos
+        var centroideLayer = L.geoJSON(ene20, {
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#f1ed08",  // Color azul para centroides
+                    color: "#000",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup("<b>Empresa:</b> " + feature.properties.Empresa + "<br><b>LONGITUD:</b> " + feature.properties.LONGITUD);
+            }
+        });
+
+        ///Segunda capa de puntos 
+        var centroideLayer2 = L.geoJSON(ene21, {
+            pointToLayer: function (feature, latlng){
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#aff5dc",
+                    color: "#000",
+                    weight: 1, 
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup("<b>Empresa:</B> " + feature.properties.Empresa + "<br><b>LONGITUD:</b> " + feature.properties.LONGITUD);
+            }
+        });
+
+        ///Tercera capa de puntos
+        var centroideLayer3 = L.geoJSON(ene22, {
+            pointToLayer: function (feature, latlng){
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#09926d",
+                    color: "#000", 
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer) {
+                layer.bindPopup("<b>Empresa:</B> " + feature.properties.Empresa + "<br><b>LONGITUD:</b> " + feature.properties.LONGITUD);
+            }
+        });
+
+        //cuarta capa de puntos
+        var centroideLayer4 = L.geoJSON(ene23, {
+            pointToLayer: function (feature, latlng){
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#65b49f",
+                    color: "#000", 
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer){
+                layer.bindPopup("<b>Empresa:</B> " + feature.properties.Empresa + "<br><b>LONGITUD:</b> " + feature.properties.LONGITUD);
+            }
+        });
+
+        //Cuarta capa de puntos 
+        var centroideLayer5 = L.geoJSON(ene24, {
+            pointToLayer: function (feature, latlng){
+                return L.circleMarker(latlng, {
+                    radius: 8,
+                    fillColor: "#1f80c8",
+                    color: "#000",
+                    weight: 1,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                });
+            },
+            onEachFeature: function (feature, layer){
+                layer.bindPopup("<b>Empresa:</B> " + feature.properties.Empresa + "<br><b>LONGITUD:</b> " + feature.properties.LONGITUD);
+            }
+        });
+
+
+
+        
         //Primera capa
         function style1(feature) {
             var values = mx320.features.map(f => f.properties.densidad);//Aqui se llama a la capa y el atributo a clasificar
@@ -192,6 +283,11 @@
         };
 
         var overlayMaps = {
+            "Entregas 20 enero": centroideLayer,
+            "Entregas 21 enero": centroideLayer2,
+            "Entregas 22 enero": centroideLayer3,
+            "Entregas 23 enero": centroideLayer4,
+            "Entregas 24 enero": centroideLayer5,
             "Densidad de entregas 20 enero": layerGroup1,
             "Densidad de entregas 21 enero": layerGroup2,
             "Densidad de entregas 22 enero": layerGroup3,
